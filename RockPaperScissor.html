@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Rock Paper Scissors</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <style>
+    body {
+      text-align: center; /* center heading and result */
+      font-family: Arial, sans-serif;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center; /* center horizontally */
+      gap: 15px; /* spacing between buttons */
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Rock🪨.Paper📃.Scissors✂️.</h1>
+  <div class="button-container">
+  <button onclick="play('Rock')">Rock</button>
+  <button onclick ="play('Paper')">Paper</button>
+  <button onclick="play('Scissor')">Scissor</button>
+  </div>
+  <p id="result">Make your move!</p>
+  <p id="finalResult"></p>
+  <script>
+    function play(yourMove){
+      const randomNumber = Math.random();
+      let computer = '';
+      let wins = 0, loses = 0, ties = 0, totalPlays = 0;
+      if(randomNumber>=0 && randomNumber<1/3){
+        computer='Rock';
+      }
+      else if(randomNumber>=1/3 && randomNumber<2/3){
+        computer='Paper';
+      }
+      else if(randomNumber>=2/3 && randomNumber<1){
+        computer='Scissor';
+      }
+      let answer = '';
+      if(computer==yourMove){
+        answer = 'Tie🪢';
+        ties++;
+      }
+      else if((computer=='Rock' && yourMove=='Paper') || (computer=='Paper' && yourMove=='Scissor') || (computer=='Scissor' && yourMove=='Rock')){
+        answer='You win🥳';
+        wins++;
+      }
+      else{
+        answer='You lose❗';
+        loses++;
+      }
+      totalPlays++;
+      document.getElementById("result").innerHTML = `Your move is ${yourMove}.Computer Move is ${computer}.${answer}`;
+      document.getElementById("finalResult").innerHTML = `Wins:${wins}|Loses:${loses}|Ties:${ties}|Totalplays:${totalPlays}`;
+    }
+  </script>
+</body>
+</html>

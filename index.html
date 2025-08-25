@@ -66,6 +66,7 @@
       color: pink;
     }
     .startOver{
+      display: none;
       padding: 10px 20px;
       font-size: 16px;
       border-radius: 8px;
@@ -85,9 +86,9 @@
   Choose wisely and have fun 🎮!
 </p>
   <div class="button-container">
-  <button onclick="play('Rock')" class="move-button"><img src="rock-emoji.png " class="move-icon"></button>
-  <button onclick ="play('Paper')" class="move-button"><img src="paper-emoji.png" class="move-icon"></button>
-  <button onclick="play('Scissor')" class="move-button"><img src="scissor-emoji.png" class="move-icon"> </button>
+  <button onclick="play('rock')" class="move-button"><img src="rock-emoji.png " class="move-icon"></button>
+  <button onclick ="play('paper')" class="move-button"><img src="paper-emoji.png" class="move-icon"></button>
+  <button onclick="play('scissor')" class="move-button"><img src="scissor-emoji.png" class="move-icon"> </button>
   </div>
   <p id="result">Make your move!</p>
   <p id="finalResult"></p>
@@ -104,19 +105,19 @@
         const randomNumber = Math.random();
         let computer = '';
         if(randomNumber>=0 && randomNumber<1/3){
-          computer='Rock';
+          computer='rock';
         }
         else if(randomNumber>=1/3 && randomNumber<2/3){
-          computer='Paper';
+          computer='paper';
         }
         else if(randomNumber>=2/3 && randomNumber<1){
-          computer='Scissor';
+          computer='scissor';
         }
         let answer = '';
         if(computer==yourMove){
           answer = 'Its a Tie🪢';
         }
-        else if((computer=='Rock' && yourMove=='Paper') || (computer=='Paper' && yourMove=='Scissor') || (computer=='Scissor' && yourMove=='Rock')){
+        else if((computer=='rock' && yourMove=='paper') || (computer=='paper' && yourMove=='scissor') || (computer=='scissor' && yourMove=='rock')){
           answer='You win';
         }
         else{
@@ -132,12 +133,13 @@
         else if(answer == 'Its a Tie🪢'){
           score.ties += 1; 
         }
-        document.getElementById("result").innerHTML = `Your move is <img src="${yourMove}-emoji.png" class="move-icon">Computer Move is <img src="${computer}-emoji.png" class="move-icon">.${answer} 
+        document.getElementById("result").innerHTML = `Your move is <img src="${yourMove}-emoji.png" class="move-icon">.Computer Move is <img src="${computer}-emoji.png" class="move-icon">.${answer} 
         <br>
         Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
         if(score.wins==5 || score.losses==5){
           gameOver = true;
           document.getElementById("finalResult").innerHTML = score.wins==5 ? "Congratulations!You won the game🥳":"Computer wins the game❗";
+          document.querySelector(".startOver").style.display = "inline-block";
         }
     }
     function startOver(){ 
@@ -147,6 +149,7 @@
       gameOver = false;
       document.getElementById("result").innerHTML = "Make your move!";
       document.getElementById("finalResult").innerHTML = '';
+      document.querySelector(".startOver").style.display = "none";
     }
   </script>
 </body>

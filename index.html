@@ -86,9 +86,9 @@
   Choose wisely and have fun 🎮!
 </p>
   <div class="button-container">
-  <button onclick="play('rock')" class="move-button"><img src="rock-emoji.png " class="move-icon"></button>
-  <button onclick ="play('paper')" class="move-button"><img src="paper-emoji.png" class="move-icon"></button>
-  <button onclick="play('scissor')" class="move-button"><img src="scissor-emoji.png" class="move-icon"> </button>
+  <button class="move-button-rock"><img src="rock-emoji.png " class="move-icon"></button>
+  <button class="move-button-paper"><img src="paper-emoji.png" class="move-icon"></button>
+  <button class="move-button-scissor"><img src="scissor-emoji.png" class="move-icon"> </button>
   </div>
   <p id="result">Make your move!</p>
   <p id="finalResult"></p>
@@ -100,6 +100,15 @@
         losses: 0,
         ties: 0 
       };
+      document.querySelector(".move-button-rock").addEventListener('click', () => {
+        play('rock'); 
+      });
+      document.querySelector(".move-button-paper").addEventListener('click', () => {
+        play('paper');  
+      });
+      document.querySelector(".move-button-scissor").addEventListener('click', () => {
+        play('scissor');  
+      });
       function play(yourMove){
         if(gameOver) return;
         const randomNumber = Math.random();
